@@ -1,5 +1,13 @@
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/src/app/api/auth/[...nextauth]/route";
+import { redirect } from "next/navigation";
 
-export default function Generator() {
+
+export default async function Generator() {
+    const session = await getServerSession(authOptions);
+    if (!session) {
+        redirect('/pages/signin');
+    }
     return (
         <>
             <div className="flex justify-center items-center p-6 m-16 ">
@@ -65,7 +73,7 @@ export default function Generator() {
                     </div>
 
                     <div className="flex items-center justify-center flex-col p-6 bg-gray-100 rounded-xl font-poppins">
-                        <img src="" alt="" />
+                        <img src="https://i.pinimg.com/originals/68/b8/94/68b8941dab3b0f8047dc1c731456d175.gif" className="h-48" alt="" />
                         <h2>Your results will appear here</h2>
                     </div>
                 </div>
