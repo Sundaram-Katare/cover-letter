@@ -1,99 +1,113 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import Navbar from "@/src/components/Navbar";
 import { Check } from "lucide-react";
 import Footer from "@/src/components/Footer";
 
 export default function Pricing() {
-    const [showSplash, setShowSplash] = useState(true);
+  const [showSplash, setShowSplash] = useState(true);
 
-    useEffect(() => {
-        const timer = setTimeout(() => setShowSplash(false), 2800);
-        return () => clearTimeout(timer);
-    }, []);
+  useEffect(() => {
+    const timer = setTimeout(() => setShowSplash(false), 2800);
+    return () => clearTimeout(timer);
+  }, []);
 
-    return (
-        <>
-            <div className="relative min-h-screen flex flex-col mx-16">
-                <div className="flex items-center justify-center h-full w-full absolute">
-                    <AnimatePresence>
-                        {showSplash ?
-                        (
-                            <motion.div className="p-16 flex space-x-8 jsutify-center items-center text-center">
-                               <motion.img 
-                               className="rounded-full h-56"
-                               initial={{ opacity: 0, scale:0.5 }}
-                               animate={{ opacity: 1, scale: 1 }}
-                               transition={{ duration: 1, ease: "easeOut" }}
-                               src={"/images/pricing.gif"} 
-                               />
+  return (
+    <>
+      <div className="relative min-h-screen w-full flex flex-col">
+        
+        {/* Splash Overlay */}
+        <AnimatePresence>
+          {showSplash && (
+            <motion.div
+              className="fixed inset-0 flex justify-center items-center bg-white z-50"
+              initial={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1 }}
+            >
+              <motion.img
+                src="/images/pricing.gif"
+                className="h-40 sm:h-48 md:h-56 rounded-full"
+                initial={{ opacity: 0, scale: 0.5 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1 }}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
 
-                              {/* <motion.h1 
-                              initial={{ opacity: 0, x: -60 }}
-                              animate={{ opacity: 1, x: 0 }}
-                                transition={{ duration: 1, ease: "easeOut" }}
-                              exit={{ opacity: 0, rotate: -10}}  
-                              className="font-cursive text-5xl font-semibold">Tailor AI</motion.h1> */}
-                            </motion.div>
-                        )
+        {/* Main Content */}
+        {!showSplash && (
+          <motion.div
+            className="w-full flex flex-col items-center justify-center px-4 sm:px-8 lg:px-16 py-12 font-poppins mt-10"
+            initial={{ opacity: 0, scale: 1.1 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1 }}
+          >
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-center">
+              Pricing and Plans
+            </h1>
+            <p className="text-gray-700 mt-2 mb-10 text-center text-base sm:text-lg">
+              Check out our monthly pricing
+            </p>
 
-                        : (
-                        <div className="flex items-center justify-center h-full w-full absolute mt-6">
-                            <motion.div 
-                             className="flex flex-col p-8 my-6 bg-gray-200/40 rounded-2xl items-center space-y-10 justify-center font-poppins"
-                             initial={{ opacity: 0, scale: 1.6 }}
-                             animate={{ opacity: 1, scale: 1 }}
-                             transition={{ duration: 1, ease: "easeInOut" }}
-                            >
-                               <h1 className="text-5xl font-medium">Pricing and Plans</h1>
-                               <p>Check out our monthly pricing</p>
+            {/* Pricing Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-4xl">
 
-                               <div className="grid grid-cols-2 gap-20">
-                                 
-                                <div className="p-4 border shadow-md shadow-black rounded-lg flex flex-col space-y-10 hover:scale-105 transition-all duration-300 ease-in-out bg-white">
-                                    <h4 className="text-2xl font-medium">Free</h4>
-                                    
-                                    {/* <h6 className="text-md font-light">per month</h6> */}
+              {/* Free Plan */}
+              <div className="p-6 bg-white border shadow-md rounded-xl hover:scale-105 transition-all duration-300 flex flex-col space-y-6">
+                <h4 className="text-2xl font-medium">Free</h4>
+                <h2 className="text-5xl sm:text-6xl font-semibold">$0</h2>
 
-                                    <h2 className="text-6xl font-semibold">$0</h2>
-
-                                    <div>
-                                        <p className="font-semibold mb-2">Includes</p>
-                                        <ul className="space-y-2">
-                                            <li className="flex gap-2"><Check color="green"/> 3 Generations</li>
-                                            <li className="flex gap-2" ><Check color="green"/> Upload Resume</li>
-                                            <li className="flex gap-2"><Check color="green"/> Paste JD</li>
-                                            <li className="flex gap-2"><Check color="green"/> Save Cover Letter</li>
-                                        </ul>
-                                    </div>
-                                 </div>
-
-                                  <div className="p-4 border shadow-md shadow-black bg-gray-800 text-gray-100 rounded-lg flex flex-col space-y-10 hover:scale-105 transition-all duration-300 ease-in-out">
-                                    <h4 className="text-2xl font-medium">Pro</h4>
-
-                                    <h2 className="text-6xl font-semibold">$12</h2>
-
-                                    <div>
-                                        <p className="font-semibold mb-2">Includes</p>
-                                        <ul className="space-y-2">
-                                            <li className="flex gap-2"><Check color="green"/> 50 Generations</li>
-                                            <li className="flex gap-2" ><Check color="green"/>Upload multiple Resumes</li>
-                                            <li className="flex gap-2"><Check color="green"/> Paste JD</li>
-                                            <li className="flex gap-2"><Check color="green"/> Save Cover Letter</li>
-                                        </ul>
-                                    </div>
-                                 </div>
-                               </div>
-                            </motion.div>
-                        </div>
-                    )}
-                    </AnimatePresence>
-
+                <div>
+                  <p className="font-semibold mb-2">Includes</p>
+                  <ul className="space-y-2 text-gray-800 text-sm sm:text-base">
+                    <li className="flex items-center gap-2">
+                      <Check color="green" /> 3 Generations
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Check color="green" /> Upload Resume
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Check color="green" /> Paste JD
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Check color="green" /> Save Cover Letter
+                    </li>
+                  </ul>
                 </div>
-            </div>
+              </div>
 
-            <Footer />
-        </>
-    )
+              {/* Pro Plan */}
+              <div className="p-6 bg-gray-900 text-gray-100 border shadow-md rounded-xl hover:scale-105 transition-all duration-300 flex flex-col space-y-6">
+                <h4 className="text-2xl font-medium">Pro</h4>
+                <h2 className="text-5xl sm:text-6xl font-semibold">$12</h2>
+
+                <div>
+                  <p className="font-semibold mb-2">Includes</p>
+                  <ul className="space-y-2 text-sm sm:text-base">
+                    <li className="flex items-center gap-2">
+                      <Check color="green" /> 50 Generations
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Check color="green" /> Upload Multiple Resumes
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Check color="green" /> Paste JD
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <Check color="green" /> Save Cover Letter
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+          </motion.div>
+        )}
+      </div>
+
+      <Footer />
+    </>
+  );
 }
