@@ -12,7 +12,7 @@ It aligns your experience with job requirements, formats the letter cleanly, and
 ## 🚀 Features
 
 ### 🔹 AI Features
-- 🤖 **AI-Generated Cover Letters** using **Gemini 1.5 Flash**
+- 🤖 **AI-Generated Cover Letters** using **Gemini 2.5 Pro**
 - 📄 **Resume Parsing** (PDF → text extraction)
 - 📝 **Job Description Analysis**
 - 🎭 **Multiple Tone Styles** — Formal, Confident, Friendly
@@ -20,14 +20,10 @@ It aligns your experience with job requirements, formats the letter cleanly, and
 
 ### 🔹 Application Features
 - 💾 Save & manage generated cover letters
-- 📥 **Download as PDF**
 - 🔐 **User Authentication** (NextAuth.js)
 - 🎨 Modern UI with **Tailwind CSS**
-- 🎞 Smooth animations using **Framer Motion**
-- 📸 **Gallery Section**
-- ⭐ Testimonial Carousel
-- 💰 Pricing Section  
-- 🧭 Responsive Navbar + Pages
+- 🎞 Smooth animations using **Framer Motion** 
+- 🧭 Responsive Pages
 
 ---
 
@@ -47,7 +43,31 @@ It aligns your experience with job requirements, formats the letter cleanly, and
 - NextAuth.js (Credentials / OAuth support)
 
 ### **AI**
-- Google Gemini 1.5 Flash  
+- Google Gemini 2.5 Pro  
 - `generateContent` API for cover letter generation
+---
+
+### Environment Variables
+```bash
+NEXTAUTH_URL=your_vercel_url
+NEXTAUTH_SECRET=your_generated_secret
+
+DATABASE_URL=your_neondb_postgres_url
+
+GEMINI_API_KEY=your_gemini_api_key
+```
 
 ---
+
+### Run Locally
+```bash
+ npm install
+
+ npx prisma generate
+ npx prisma migrate dev
+
+npm run dev 
+```
+
+### Deployement
+- Deployed on Vercel
