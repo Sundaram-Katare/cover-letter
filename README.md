@@ -6,7 +6,9 @@ It aligns your experience with job requirements, formats the letter cleanly, and
 ---
 
 ## 📷 Preview
-<img width="1889" height="909" alt="Screenshot 2025-11-22 203640" src="https://github.com/user-attachments/assets/2bfb8fb4-1e1a-4bc5-a9cc-3aecbe7c886d" />
+
+https://github.com/user-attachments/assets/4d598543-8382-4f1c-babd-5b1a45e230bc
+
 
 
 ## 🚀 Features
